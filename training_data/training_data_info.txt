@@ -1,0 +1,5 @@
+This folder contains the training data.  
+
+At this moment we are set up to take in left and right Kitti 2015 images in the folders image_2 and image_3 respectively.
+
+The script convert_data.py prepares this data into pickle files.
