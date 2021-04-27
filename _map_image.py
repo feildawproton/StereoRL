@@ -141,6 +141,34 @@ def indx_map_x(source, map):
 	cuda_indx_map_x[blocks_per_grid, THREADS_PER_BLOCK_2D](this_source, target, this_map, this_map.shape[0], this_map.shape[1])
 
 	return target
+	
+def indx_map_x_white(source, map):
+	if map.ndim != 3:
+		print("map dimensions must be 3: (x, y, (_x, _y))")
+		return 1
+	if map.dtype != np.int32:
+		print("map needs to be of type np.int32")
+		return 1
+	if map.shape[2] != 1:
+		print("this is just a one dimensional disparity map along x.  map should only have 1 value in last dimension")
+		return 1
+	if len(source.shape) != 3 and len(source.shape[2]) != 3:
+		print("EXPECTED IMAGES WITH SHAPE Y BY X BY (r,g,b)")
+		return 1
+	# -- Need to copy --
+	target 				= np.ones(shape = source.shape, dtype = np.float32)
+	this_source 		= np.zeros(shape = source.shape)
+	this_source 		= np.copy(source)
+	this_map 			= np.zeros(shape = map.shape)
+	this_map 			= np.copy(map)
+
+	# -- Kernel Launch --
+	blocks_per_grid_y 	= math.ceil(map.shape[0] / THREADS_PER_BLOCK_2D[0])
+	blocks_per_grid_x 	= math.ceil(map.shape[1] / THREADS_PER_BLOCK_2D[1])
+	blocks_per_grid 	= (blocks_per_grid_y, blocks_per_grid_x)
+	cuda_indx_map_x[blocks_per_grid, THREADS_PER_BLOCK_2D](this_source, target, this_map, this_map.shape[0], this_map.shape[1])
+
+	return target
 '''
 def indx_map_x_grey(source, map):
 	if map.ndim != 3:
@@ -337,38 +365,3 @@ while iter < 10:
 	
 _ = input("let's do something else")
 '''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
