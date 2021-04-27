@@ -1,0 +1,3 @@
+Put disp_0 folder from LEAStereo testing here for evaluation of the results.  
+Also place the corresponding testing folder with image_2 and image_3 subfolders.
+Only images that end in _10.png to match up with the disp_0 maps.
