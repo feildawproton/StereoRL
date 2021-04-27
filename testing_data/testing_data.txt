@@ -1,0 +1,3 @@
+We use only the images that end in _10.png for testing because that is what LEAStereo uses for comparison.  You can use more if you want.
+
+Create image_2 and image_2 folders.  200 images per folder (left and right respectively).
