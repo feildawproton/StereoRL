@@ -67,8 +67,8 @@ PATIENCE_TEST			= 1.0
 MAX_STEPS_PER_IMAGE		= 512
 EPS_DECAY				= MAX_STEPS_PER_IMAGE / 4
 UPDATE_AFTER_ACTIONS	= 8																					# how often to train the model.  used 4 from examples.  borrowed this from keras rl examples
-BATCH_SIZE				= 64
-NUM_EPOCHS				= 4																					# the number of times we will go through the whole 
+BATCH_SIZE				= 32
+NUM_EPOCHS				= 5																					# the number of times we will go through the whole 
 
 # -- HYPERPARAMETERS TO VARY -- 
 LEARNING_RATE 			= 0.001																				# was 0.00025 in the keras reference 
@@ -250,7 +250,7 @@ while epoch_iter < NUM_EPOCHS:
 
 	
 print("saving model.  The following error means that the model was not save with optimizer and cannot be retrained automatically.  That makes since because this is RL.  We can just set up training again.")
-model_name = "4epoch_4Inputs_4LayerNormed_" + str(KERNEL_DIM) + "KERNEL_" + str(FILTERS_PER_LAYER) + "FILTERS_" + str(LEARNING_RATE) + "LR"
+model_name = "5epoch_4Inputs_5LayerNormed_" + str(KERNEL_DIM) + "KERNEL_" + str(FILTERS_PER_LAYER) + "FILTERS_" + str(LEARNING_RATE) + "LR"
 model.save(model_name)
 
 	
