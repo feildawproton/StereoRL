@@ -1,1 +1,0 @@
-Where best states are save for each epoch and image pair.
