@@ -31,6 +31,34 @@ def similarity_perpixel(img, drawing):
 	
 	return AB, AB_red
 	
+def similarity_perpixel_boosted(img, drawing, value):
+	img_norm = tf.math.l2_normalize(img, axis = -1)
+	drawing_norm = tf.math.l2_normalize(drawing, axis = -1)
+	
+	AmultB = tf.math.multiply(img_norm, drawing_norm)
+
+	AB = tf.math.reduce_sum(AmultB, axis = -1)	
+	
+	AB_red = tf.math.reduce_sum(AB, axis = -1)
+	AB_red = tf.math.reduce_sum(AB_red, axis = -1)
+	
+	# -- WEIGHING TO BALANCE OUT OF BOUNDS --
+	# -- IF USED DURING LEARNING, THIS MIGHT CAUSE THE AGENT TO SEEK OUT OF BOUNDS --
+	equal2condition = tf.math.equal(AB, 0)
+	AB_boosted = tf.where(equal2condition, value, AB)  #condition is a mask, tf.where chooses value when condition is True, and chooses AB when condition is false
+	
+	AB_red_boosted = tf.math.reduce_sum(AB_boosted, axis = -1)
+	AB_red_boosted = tf.math.reduce_sum(AB_red_boosted, axis = -1)
+	
+	
+	#print(AB)
+	#print(AB_red)
+	#print(AB_boosted)
+	#print(AB_red_boosted)
+	#_ = input("hold up and observe")
+	
+	return AB_boosted, AB_red_boosted
+	
 def leftfromright_error(y_true_both, y_pred_map):
 	y_true_left = y_true_both[:,:,:,0:3]
 	y_true_right = y_true_both[:,:,:,3:6]
