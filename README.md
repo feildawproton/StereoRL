@@ -9,9 +9,10 @@ Unsupervised generation of stereo disparity maps using reinforcement learning an
 - keras
 - numba for cuda.  This is cool package that allows you to write CUDA kernels directly in your python scripts.
 
-Setup
+**Setup**
 - Create state-saves folder
 - If you want to training the classifier, create a folder called "classifier_checkpoints"
 - If you want to test a pretrained model. unzip it first
+- for now follow instructions inside the training and testing folders for copying and converting data
 
 Scripts that begine with "rl_x_reduced" are the reinforcement learning training agent model training scripts.
