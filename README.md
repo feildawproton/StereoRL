@@ -14,3 +14,4 @@ Setup
 - If you want to training the classifier, create a folder called "classifier_checkpoints"
 - If you want to test a pretrained model. unzip it first
 
+Scripts that begine with "rl_x_reduced" are the reinforcement learning training agent model training scripts.
