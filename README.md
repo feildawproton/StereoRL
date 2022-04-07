@@ -1,5 +1,5 @@
 # StereoRL
-Unsupervised generation of stereo disparity maps using reinforcement learning and no ground truth
+Unsupervised generation of stereo disparity maps using reinforcement learning and no ground truth. From 2021 ECE8441.
 
 **Depends on**
 - opencv
